@@ -86,9 +86,36 @@ impl AutoTokenizer {
         } else {
             &String::new()
         };
-        
+        let bos = if let Some(bos) = &self.bos_token {
+            match bos {
+                Token::String(realbos) => realbos,
+                Token::TokenObj(token_obj) => &token_obj.content,
+            }
+        } else {
+            &String::new()
+        };
+        let pad = if let Some(pad) = &self.pad_token {
+            match pad {
+                Token::String(realpad) => realpad,
+                Token::TokenObj(token_obj) => &token_obj.content,
+            }
+        } else {
+            &String::new()
+        };
+        let unk: &String = if let Some(unk) = &self.unk_token {
+            match unk {
+                Token::String(realunk) => realunk,
+                Token::TokenObj(token_obj) => &token_obj.content,
+            }
+        } else {
+            &String::new()
+        };
+
         match tmpl.render(context! {
             messages=> ctx,
+            unk_token=> *unk,
+            pad_token=> *pad,
+            bos_token=> *bos,
             eos_token=> *eos,
             add_generation_prompt=> add_generation_prompt
         }) {
