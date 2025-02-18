@@ -1,0 +1,12 @@
+[package]
+name = "autotokenizer"
+version = "0.1.0"
+edition = "2021"
+
+[features]
+
+[dependencies]
+hf-hub = "0.4.1"
+minijinja = "2.7.0"
+serde = "1.0.217"
+serde_json = "1.0.138"
