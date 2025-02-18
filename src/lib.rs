@@ -1,5 +1,4 @@
 use minijinja::context;
-use serde::Serialize;
 
 mod from_pretrained;
 
