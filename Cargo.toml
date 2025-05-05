@@ -1,14 +1,14 @@
 [package]
 name = "autotokenizer"
 description = "我就只是想要rust能有一個簡單的，從hg上拉下config並製作chat prompt的，也這麼難！要我發明輪子，天啊！"
-version = "0.1.1"
+version = "0.1.2"
 edition = "2021"
 license = "MIT"
 
 [features]
 
 [dependencies]
-hf-hub = "0.4.1"
-minijinja = "2.7.0"
-serde = "1.0.217"
-serde_json = "1.0.138"
+hf-hub = "0.4.2"
+minijinja = "2.10.0"
+serde = "1.0.219"
+serde_json = "1.0.140"
