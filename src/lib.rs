@@ -77,6 +77,15 @@ impl AutoTokenizer {
     ) -> Result<String, Box<dyn std::error::Error + Send + Sync>> {
         let mut env = minijinja::Environment::new();
         env.add_template("default", &self.chat_template).unwrap();
+        env.add_function(
+            "raise_exception",
+            |msg: String| -> Result<(), minijinja::Error> {
+                Err(minijinja::Error::new(
+                    minijinja::ErrorKind::UndefinedError,
+                    msg,
+                ))
+            },
+        );
         let tmpl = env.get_template("default").unwrap();
         let eos = if let Some(eos) = &self.eos_token {
             match eos {
